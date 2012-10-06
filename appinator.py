@@ -1,7 +1,7 @@
 from sys import argv
 import os
 
-script, app_name = argv
+script, action, app_name = argv
 
 class Create():
     def __init__(self, app_name):
@@ -40,3 +40,10 @@ class Destroy():
             rmtree(app_name)
         else:
             print "No app named '%s'" % app_name
+
+if action == "create":
+    Create(app_name)
+if action == "destroy":
+    Destroy(app_name)
+else:
+    print "no action specified"
