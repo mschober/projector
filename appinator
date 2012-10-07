@@ -1,24 +1,24 @@
 #!/usr/bin/env python
+#http://docs.python.org/library/optparse.html
+
 from sys import argv
 import os
 from create import Create
 from destroy import Destroy
+from optparse import OptionParser
 
-script, action, app_name = argv
+parser = OptionParser()
+parser.add_option('-n', '--name', dest='app_name', default='app')
+parser.add_option('-c', '--create', action="store_true", dest='create_action')
+parser.add_option('-d', '--destroy', action="store_true", dest='destroy_action')
+(options, args) = parser.parse_args(argv)
 
-class NewTest():
-    def __init__(self, app_name):
-        self.new_test(app_name)
+app_name = options.app_name
 
-    def new_test(self, app_name):
-        open("app/test/" + app_name, 'w')
-
-if action == "create":
+if options.create_action:
     Create(app_name)
-elif action == "destroy":
+elif options.destroy_action:
     Destroy(app_name)
-elif action == "new-test":
-    NewTest(app_name)
 else:
     print "no action specified"
 
