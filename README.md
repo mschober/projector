@@ -1,1 +1,1 @@
-tired of building python project structure by hand? try appinator
+Tired of building python project structures by hand? Try projector.
