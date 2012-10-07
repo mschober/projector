@@ -8,17 +8,15 @@ from destroy import Destroy
 from optparse import OptionParser
 
 parser = OptionParser()
-parser.add_option('-n', '--name', dest='app_name', default='app')
-parser.add_option('-c', '--create', action="store_true", dest='create_action')
-parser.add_option('-d', '--destroy', action="store_true", dest='destroy_action')
+parser.add_option('-c', '--create', dest='create_action', help="create a new app")
+parser.add_option('-d', '--destroy', dest='destroy_action', help="destroy an existing app")
 (options, args) = parser.parse_args(argv)
 
-app_name = options.app_name
-
 if options.create_action:
+    app_name = options.create_action
     Create(app_name)
 elif options.destroy_action:
+    app_name = options.destroy_action
     Destroy(app_name)
-else:
-    print "no action specified"
-
+else: 
+    parser.print_help()
